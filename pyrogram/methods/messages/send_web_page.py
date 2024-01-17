@@ -30,7 +30,7 @@ class SendWebPage:
     async def send_web_page(
         self: "pyrogram.Client",
         chat_id: Union[int, str],
-        url: str,
+        url: str = None,
         text: str = "",
         parse_mode: Optional["enums.ParseMode"] = None,
         entities: List["types.MessageEntity"] = None,
@@ -68,6 +68,7 @@ class SendWebPage:
 
             url (``str``):
                 Link that will be previewed.
+                If url not specified, the first URL found in the text will be used.
 
             text (``str``, *optional*):
                 Text of the message to be sent.
@@ -142,9 +143,19 @@ class SendWebPage:
 
         """
 
-        message, entities = (
-            await utils.parse_text_entities(self, text, parse_mode, entities)
-        ).values()
+        message, entities = (await utils.parse_text_entities(self, text, parse_mode, entities)).values()
+        if not url:
+            if entities:
+                for entity in entities:
+                    if isinstance(entity, enums.MessageEntityType.URL):
+                        url = entity.url
+                        break
+
+                if not url:
+                    url = utils.get_first_url(message)
+
+        if not url:
+            raise ValueError("URL not specified")
 
         reply_to = await utils.get_reply_to(
             client=self,
