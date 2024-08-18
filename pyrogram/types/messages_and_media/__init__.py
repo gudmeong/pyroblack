@@ -42,6 +42,7 @@ from .message import Message
 from .message_entity import MessageEntity
 from .message_reaction_count_updated import MessageReactionCountUpdated
 from .message_reaction_updated import MessageReactionUpdated
+from .message_reactor import MessageReactor
 from .message_reactions import MessageReactions
 from .message_story import MessageStory
 from .message_invoice import MessageInvoice
@@ -136,6 +137,7 @@ __all__ = [
     "ReactionType",
     "MessageReactionUpdated",
     "MessageReactionCountUpdated",
+    "MessageReactor",
     "MessageStory",
     "ReadParticipant",
     "Story",

@@ -77,7 +77,8 @@ class SendPaidReaction:
             random_id=self.rnd_id(),
             private=privacy,
         )
+        users = {i.id: i for i in r.users}
 
-        await self.invoke(rpc)
-
-        return True
+        for i in r.updates:
+            if isinstance(i, raw.types.UpdateMessageReactions):
+                return types.MessageReactions._parse(self, i.reactions, users)
