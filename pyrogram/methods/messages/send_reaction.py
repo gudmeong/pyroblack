@@ -46,6 +46,9 @@ class SendReaction:
             If you specify, ``story_id``
                 .. include:: /_includes/usable-by/users.rst
 
+            If you specify, ``story_id``
+                .. include:: /_includes/usable-by/users.rst
+
         Parameters:
             chat_id (``int`` | ``str``):
                 Unique identifier (int) or username (str) of the target chat.
