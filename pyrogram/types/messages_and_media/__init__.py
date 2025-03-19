@@ -46,6 +46,11 @@ from .message_story import MessageStory
 from .message_invoice import MessageInvoice
 from .paid_media import PaidMedia
 from .payment_form import PaymentForm
+from .message_origin import MessageOrigin
+from .message_origin_channel import MessageOriginChannel
+from .message_origin_chat import MessageOriginChat
+from .message_origin_hidden_user import MessageOriginHiddenUser
+from .message_origin_user import MessageOriginUser
 from .photo import Photo
 from .poll import Poll
 from .poll_option import PollOption
@@ -74,6 +79,7 @@ from .web_page_empty import WebPageEmpty
 from .web_page_preview import WebPagePreview
 from .transcribed_audio import TranscribedAudio
 from .translated_text import TranslatedText
+from .text_quote import TextQuote
 
 __all__ = [
     "AlternativeVideo",
@@ -96,6 +102,11 @@ __all__ = [
     "MediaAreaCoordinates",
     "Message",
     "MessageEntity",
+    "MessageOrigin",
+    "MessageOriginChannel",
+    "MessageOriginChat",
+    "MessageOriginHiddenUser",
+    "MessageOriginUser",
     "PaidMedia",
     "PaymentForm",
     "Photo",
@@ -132,4 +143,5 @@ __all__ = [
     "ExportedStoryLink",
     "TranscribedAudio",
     "TranslatedText",
+    "TextQuote"
 ]
