@@ -203,6 +203,7 @@ class Story(Object, Update):
         animation = None
         photo = None
         video = None
+        media_type = None
         chat = None
         from_user = None
         sender_chat = None

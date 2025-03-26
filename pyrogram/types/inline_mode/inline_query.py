@@ -16,7 +16,7 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-from typing import List, Match
+from typing import List, Match, Dict
 
 import pyrogram
 from pyrogram import raw
@@ -78,7 +78,9 @@ class InlineQuery(Object, Update):
 
     @staticmethod
     def _parse(
-        client, inline_query: raw.types.UpdateBotInlineQuery, users: dict
+        client,
+        inline_query: raw.types.UpdateBotInlineQuery,
+        users: Dict[int, "raw.types.User"]
     ) -> "InlineQuery":
         peer_type = inline_query.peer_type
         chat_type = None

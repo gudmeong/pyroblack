@@ -20,6 +20,7 @@ from typing import Union
 
 import pyrogram
 from pyrogram import raw
+from typing import Union
 
 
 class HideGeneralTopic:

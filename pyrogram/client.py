@@ -35,7 +35,7 @@ from importlib import import_module
 from io import StringIO, BytesIO
 from mimetypes import MimeTypes
 from pathlib import Path
-from typing import Union, List, Optional, Callable, AsyncGenerator, Type, Tuple
+from typing import Union, List, Optional, Callable, AsyncGenerator, Tuple
 
 import pyrogram
 from pyrogram import __version__, __license__
@@ -63,7 +63,7 @@ from pyrogram.storage import FileStorage, MemoryStorage, Storage
 from pyrogram.types import User, TermsOfService
 from pyrogram.utils import ainput, run_sync
 from .connection import Connection
-from .connection.transport import TCP, TCPAbridged
+from .connection.transport import TCPAbridged
 from .dispatcher import Dispatcher
 from .file_id import FileId, FileType, ThumbnailSource
 from .mime_types import mime_types
@@ -71,6 +71,15 @@ from .parser import Parser
 from .session.internals import MsgId
 
 log = logging.getLogger(__name__)
+MONGO_AVAIL = False
+
+try:
+    import pymongo
+except Exception:
+    pass
+else:
+    from pyrogram.storage import MongoStorage
+    MONGO_AVAIL = True
 
 
 class Client(Methods):
@@ -1025,7 +1034,7 @@ class Client(Methods):
                                                     )
 
                                                     count += 1
-                                        except Exception as e:
+                                        except Exception:
                                             pass
             else:
                 for path, handlers in include:
@@ -1127,7 +1136,7 @@ class Client(Methods):
                                                             )
 
                                                             count += 1
-                                                except Exception as e:
+                                                except Exception:
                                                     pass
 
                     if handlers is None:

@@ -114,9 +114,9 @@ class GetMessages:
 
             peer = await self.resolve_peer(chat_id)
 
-            is_iterable = not isinstance(ids, int)
-            ids = list(ids) if is_iterable else [ids]
-            ids = [ids_type(id=i) for i in ids]
+        is_iterable = not isinstance(ids, int)
+        ids = list(ids) if is_iterable else [ids]
+        ids = [ids_type(id=i) for i in ids]  # pylint: disable=not-callable
 
             if replies < 0:
                 replies = (1 << 31) - 1

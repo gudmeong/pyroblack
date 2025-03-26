@@ -19,11 +19,10 @@
 from typing import List, Union
 
 import pyrogram
-from pyrogram import enums
-from pyrogram import raw, utils, types
 
 from ..object import Object
-
+from pyrogram import raw, types, utils
+from typing import Union, List
 
 class RequestedChats(Object):
     """Contains information about requested chats.

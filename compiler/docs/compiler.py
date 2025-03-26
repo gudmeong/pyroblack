@@ -454,7 +454,7 @@ def pyrogram_api():
         fmt_keys = {}
 
         for k, v in categories.items():
-            name, *methods = get_title_list(v)
+            _, *methods = get_title_list(v)
             fmt_keys.update({k: "\n    ".join("{0} <{0}>".format(m) for m in methods)})
 
             for method in methods:
@@ -734,7 +734,7 @@ def pyrogram_api():
         fmt_keys = {}
 
         for k, v in categories.items():
-            name, *types = get_title_list(v)
+            _, *types = get_title_list(v)
 
             fmt_keys.update({k: "\n    ".join(types)})
 
