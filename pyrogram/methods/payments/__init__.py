@@ -18,6 +18,7 @@
 
 from .check_giftcode import CheckGiftCode
 from .get_payment_form import GetPaymentForm
+from .send_paid_reaction import SendPaidReaction
 from .send_payment_form import SendPaymentForm
 
 

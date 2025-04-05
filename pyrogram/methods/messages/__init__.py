@@ -65,7 +65,6 @@ from .send_location import SendLocation
 from .send_media_group import SendMediaGroup
 from .send_message import SendMessage
 from .send_paid_media import SendPaidMedia
-from .send_paid_reaction import SendPaidReaction
 from .send_photo import SendPhoto
 from .send_poll import SendPoll
 from .send_reaction import SendReaction
@@ -108,7 +107,6 @@ class Messages(
     SendMediaGroup,
     SendMessage,
     SendPaidMedia,
-    SendPaidReaction,
     SendPhoto,
     SendSticker,
     SendVenue,

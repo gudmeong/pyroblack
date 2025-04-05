@@ -231,7 +231,6 @@ def pyrogram_api():
             get_discussion_replies_count
             get_custom_emoji_stickers
             delete_chat_history
-            send_paid_reaction
             transcribe_audio
             translate_message_text
             delete_chat_history
@@ -367,6 +366,7 @@ def pyrogram_api():
         Payments
             check_gift_code
             get_payment_form
+            send_paid_reaction
             send_payment_form
         """,
         phone="""
