@@ -34,5 +34,5 @@ __all__ = [
     "Int128",
     "Int256",
     "String",
-    "Vector"
+    "Vector",
 ]

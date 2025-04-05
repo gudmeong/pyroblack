@@ -118,19 +118,19 @@ class GetMessages:
         ids = list(ids) if is_iterable else [ids]
         ids = [ids_type(id=i) for i in ids]  # pylint: disable=not-callable
 
-            if replies < 0:
-                replies = (1 << 31) - 1
+        if replies < 0:
+            replies = (1 << 31) - 1
 
-            if isinstance(peer, raw.types.InputPeerChannel):
-                rpc = raw.functions.channels.GetMessages(channel=peer, id=ids)
-            else:
-                rpc = raw.functions.messages.GetMessages(id=ids)
+        if isinstance(peer, raw.types.InputPeerChannel):
+            rpc = raw.functions.channels.GetMessages(channel=peer, id=ids)
+        else:
+            rpc = raw.functions.messages.GetMessages(id=ids)
 
-            r = await self.invoke(rpc, sleep_threshold=-1)
+        r = await self.invoke(rpc, sleep_threshold=-1)
 
-            messages = await utils.parse_messages(self, r, replies=replies)
+        messages = await utils.parse_messages(self, r, replies=replies)
 
-            return messages if is_iterable else messages[0] if messages else None
+        return messages if is_iterable else messages[0] if messages else None
 
         if link:
             linkps = link.split("/")

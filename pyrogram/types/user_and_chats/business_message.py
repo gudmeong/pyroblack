@@ -81,8 +81,10 @@ class BusinessMessage(Object):
     @staticmethod
     def _parse(
         client,
-        message: Union["raw.types.BusinessGreetingMessage", "raw.types.BusinessAwayMessage"] = None,
-        users: Dict[int, "raw.types.User"] = None
+        message: Union[
+            "raw.types.BusinessGreetingMessage", "raw.types.BusinessAwayMessage"
+        ] = None,
+        users: Dict[int, "raw.types.User"] = None,
     ) -> Optional["BusinessMessage"]:
         if not message:
             return None

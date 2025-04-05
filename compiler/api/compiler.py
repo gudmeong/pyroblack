@@ -461,12 +461,14 @@ def start(format: bool = False):
             references, count = get_references(c.qualname, "constructors")
 
             if references:
-                docstring += f"\n    Functions:\n        This object can be returned by " \
-                             f"{count} function{'s' if count > 1 else ''}.\n\n" \
-                             f"        .. currentmodule:: pyrogram.raw.functions\n\n" \
-                             f"        .. autosummary::\n" \
-                             f"            :nosignatures:\n\n" \
-                             f"            " + references
+                docstring += (
+                    f"\n    Functions:\n        This object can be returned by "
+                    f"{count} function{'s' if count > 1 else ''}.\n\n"
+                    f"        .. currentmodule:: pyrogram.raw.functions\n\n"
+                    f"        .. autosummary::\n"
+                    f"            :nosignatures:\n\n"
+                    f"            " + references
+                )
 
         write_types = read_types = "" if c.has_flags else "# No flags\n        "
 

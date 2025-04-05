@@ -80,7 +80,7 @@ class InlineQuery(Object, Update):
     def _parse(
         client,
         inline_query: raw.types.UpdateBotInlineQuery,
-        users: Dict[int, "raw.types.User"]
+        users: Dict[int, "raw.types.User"],
     ) -> "InlineQuery":
         peer_type = inline_query.peer_type
         chat_type = None

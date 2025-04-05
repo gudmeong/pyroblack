@@ -46,6 +46,7 @@ class MessageReactor(Object):
         sender_chat (:obj:`~pyrogram.types.Chat`, *optional*):
             Information about the sender chat.
     """
+
     def __init__(
         self,
         *,
@@ -55,7 +56,7 @@ class MessageReactor(Object):
         is_my: bool = None,
         is_anonymous: bool = None,
         from_user: "types.User" = None,
-        sender_chat: "types.Chat" = None
+        sender_chat: "types.Chat" = None,
     ):
         super().__init__(client)
 
@@ -71,7 +72,7 @@ class MessageReactor(Object):
         client: "pyrogram.Client",
         message_reactor: Optional["raw.base.MessageReactor"] = None,
         users: Dict[int, "raw.types.User"] = None,
-        chats: Dict[int, "raw.types.Chat"] = None
+        chats: Dict[int, "raw.types.Chat"] = None,
     ) -> Optional["MessageReactor"]:
         if not message_reactor:
             return None
@@ -82,13 +83,11 @@ class MessageReactor(Object):
         if not is_anonymous:
             if isinstance(message_reactor.peer_id, raw.types.PeerUser):
                 from_user = types.User._parse(
-                    client,
-                    users.get(message_reactor.peer_id.user_id)
+                    client, users.get(message_reactor.peer_id.user_id)
                 )
             elif isinstance(message_reactor.peer_id, raw.types.PeerChannel):
                 sender_chat = types.Chat._parse_channel_chat(
-                    client,
-                    chats.get(message_reactor.peer_id.channel_id)
+                    client, chats.get(message_reactor.peer_id.channel_id)
                 )
 
         return MessageReactor(
@@ -98,5 +97,5 @@ class MessageReactor(Object):
             is_my=message_reactor.my,
             is_anonymous=is_anonymous,
             from_user=from_user,
-            sender_chat=sender_chat
+            sender_chat=sender_chat,
         )

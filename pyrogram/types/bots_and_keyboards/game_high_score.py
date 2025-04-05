@@ -53,9 +53,7 @@ class GameHighScore(Object):
 
     @staticmethod
     def _parse(
-        client,
-        game_high_score: raw.types.HighScore,
-        users: Dict[int, "raw.types.User"]
+        client, game_high_score: raw.types.HighScore, users: Dict[int, "raw.types.User"]
     ) -> "GameHighScore":
         users = {i.id: i for i in users}
 
@@ -68,9 +66,7 @@ class GameHighScore(Object):
 
     @staticmethod
     def _parse_action(
-        client,
-        service: raw.types.MessageService,
-        users: Dict[int, "raw.types.User"]
+        client, service: raw.types.MessageService, users: Dict[int, "raw.types.User"]
     ) -> "GameHighScore":
         return GameHighScore(
             user=types.User._parse(

@@ -79,6 +79,7 @@ except Exception:
     pass
 else:
     from pyrogram.storage import MongoStorage
+
     MONGO_AVAIL = True
 
 

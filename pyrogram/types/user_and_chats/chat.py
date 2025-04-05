@@ -433,7 +433,7 @@ class Chat(Object):
         message: Union[raw.types.Message, raw.types.MessageService],
         users: Dict[int, "raw.types.User"],
         chats: Dict[int, "raw.types.Chat"],
-        is_chat: bool
+        is_chat: bool,
     ) -> "Chat":
         from_id = utils.get_raw_peer_id(message.from_id)
         peer_id = utils.get_raw_peer_id(message.peer_id)
@@ -450,13 +450,9 @@ class Chat(Object):
     @staticmethod
     def _parse_dialog(
         client,
-        peer: Union[
-            raw.types.PeerUser,
-            raw.types.PeerChat,
-            raw.types.PeerChannel
-        ],
+        peer: Union[raw.types.PeerUser, raw.types.PeerChat, raw.types.PeerChannel],
         users: Dict[int, "raw.types.User"],
-        chats: Dict[int, "raw.types.Chat"]
+        chats: Dict[int, "raw.types.Chat"],
     ) -> "Chat":
         if isinstance(peer, raw.types.PeerUser):
             return Chat._parse_user_chat(client, users[peer.user_id])

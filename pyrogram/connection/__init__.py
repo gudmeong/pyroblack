@@ -18,6 +18,4 @@
 
 from .connection import Connection
 
-__all__ = [
-    "Connection"
-]
+__all__ = ["Connection"]

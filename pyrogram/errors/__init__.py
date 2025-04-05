@@ -75,13 +75,14 @@ class CDNFileHashMismatch(SecurityError):
             "A CDN file hash mismatch has occurred." if msg is None else msg
         )
 
+
 __all__ = [
     "BadMsgNotification",
     "SecurityError",
     "SecurityCheckMismatch",
     "CDNFileHashMismatch",
     "RPCError",
-    "UnknownError"
+    "UnknownError",
 ]
 if EXCEPTION_AVAIL:
     __all__.extend(exceptions.__all__)

@@ -24,6 +24,7 @@ from ..object import Object
 from pyrogram import raw, types, utils
 from typing import Union, List
 
+
 class RequestedChats(Object):
     """Contains information about requested chats.
 

@@ -66,7 +66,7 @@ class BusinessRecipients(Object):
     def _parse(
         client,
         recipients: "raw.types.BusinessRecipients",
-        users: Dict[int, "raw.types.User"] = None
+        users: Dict[int, "raw.types.User"] = None,
     ) -> "BusinessRecipients":
         return BusinessRecipients(
             existing_chats=getattr(recipients, "existing_chats", None),

@@ -38,7 +38,14 @@ class ContinuePropagation(StopAsyncIteration):
     pass
 
 
-from . import raw, types, filters, handlers, emoji, enums  # pylint: disable=wrong-import-position
+from . import (
+    raw,
+    types,
+    filters,
+    handlers,
+    emoji,
+    enums,
+)  # pylint: disable=wrong-import-position
 from .client import Client  # pylint: disable=wrong-import-position
 from .sync import idle, compose  # pylint: disable=wrong-import-position
 
