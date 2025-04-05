@@ -71,16 +71,6 @@ from .parser import Parser
 from .session.internals import MsgId
 
 log = logging.getLogger(__name__)
-MONGO_AVAIL = False
-
-try:
-    import pymongo
-except Exception:
-    pass
-else:
-    from pyrogram.storage import MongoStorage
-
-    MONGO_AVAIL = True
 
 
 class Client(Methods):
@@ -924,7 +914,8 @@ class Client(Methods):
                         except Exception as e:
                             print(e)
 
-    def is_excluded(self, exclude, module):
+    @staticmethod
+    def is_excluded(exclude, module):
         for e in exclude:
             if module == e or module.startswith(e + "."):
                 return True

@@ -87,6 +87,9 @@ class UpdateFolder:
             exclude_muted (``bool``, *optional*):
                 Pass True if folder should exclude muted users.
 
+            exclude_read (``bool``, *optional*):
+                Pass True if folder should exclude chats with no unread messages.
+
             exclude_archived (``bool``, *optional*):
                 Pass True if folder should exclude archived users.
 

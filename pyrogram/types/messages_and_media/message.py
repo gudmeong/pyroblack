@@ -945,7 +945,7 @@ class Message(Object, Update):
                 message_thread_id=message_thread_id,
                 date=utils.timestamp_to_datetime(message.date),
                 chat=types.Chat._parse(client, message, users, chats, is_chat=True),
-                topics=None,
+                topic=None,
                 from_user=from_user,
                 service=service_type,
                 new_chat_members=new_chat_members,
@@ -1291,7 +1291,7 @@ class Message(Object, Update):
                 business_connection_id=business_connection_id,
                 date=utils.timestamp_to_datetime(message.date),
                 chat=types.Chat._parse(client, message, users, chats, is_chat=True),
-                topics=None,
+                topic=None,
                 from_user=from_user,
                 sender_business_bot=sender_business_bot,
                 text=(
