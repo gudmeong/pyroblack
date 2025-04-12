@@ -212,7 +212,7 @@ class Client(Methods):
         max_concurrent_transmissions (``int``, *optional*):
             Set the maximum amount of concurrent transmissions (uploads & downloads).
             A value that is too high may result in network related issues.
-            Defaults to 500.
+            Defaults to 30.
 
         upload_boost (``bool``, *optional*):
             Make pyroblack use more parallel connections for file uploads.
@@ -252,7 +252,7 @@ class Client(Methods):
     # Interval of seconds in which the updates watchdog will kick in
     UPDATES_WATCHDOG_INTERVAL = 10 * 60
 
-    MAX_CONCURRENT_TRANSMISSIONS = 500
+    MAX_CONCURRENT_TRANSMISSIONS = 30
     MAX_MESSAGE_CACHE_SIZE = 10000
 
     mimetypes = MimeTypes()
