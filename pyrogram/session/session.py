@@ -125,7 +125,7 @@ class Session:
             return  # stop instantly
 
         if self.start_lock.locked():
-            log.warning(
+            log.info(
                 f"[pyroblack] Client [{self.client.name}] called start while already starting"
             )
             return  # don't start 2 times at once
@@ -205,7 +205,7 @@ class Session:
             return  # stop doing anything instantly, force stop
 
         if self.stop_lock.locked():
-            log.warning(
+            log.info(
                 f"[pyroblack] Client [{self.client.name}] called stop while already stopping"
             )
             return  # don't stop 2 times at once
