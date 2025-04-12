@@ -74,6 +74,7 @@ from .send_video import SendVideo
 from .send_video_note import SendVideoNote
 from .send_voice import SendVoice
 from .send_web_page import SendWebPage
+from .start_bot import StartBot
 from .stop_poll import StopPoll
 from .stream_media import StreamMedia
 from .view_messages import ViewMessages

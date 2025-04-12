@@ -185,6 +185,7 @@ def pyrogram_api():
             send_voice
             send_video_note
             send_web_page
+            start_bot
             send_media_group
             send_location
             send_venue
