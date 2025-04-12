@@ -21,7 +21,7 @@ from pyrogram import raw
 
 
 class ResetSessions:
-    async def reset_sessions(self: "pyrogram.Client", id: int) -> bool:
+    async def reset_sessions(self: "pyrogram.Client") -> bool:
         """Terminates all user's authorized sessions except for the current one.
 
         .. include:: /_includes/usable-by/users.rst
