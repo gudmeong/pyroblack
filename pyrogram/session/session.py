@@ -200,7 +200,7 @@ class Session:
             self.is_started.set()
             log.info("Session started")
 
-    async def stop(self, restart: bool = False):
+    async def stop(self):
         if self.instant_stop:
             return  # stop doing anything instantly, force stop
 
@@ -212,8 +212,7 @@ class Session:
 
         async with self.stop_lock:
             try:
-                if restart:
-                    self.instant_stop = True  # tell all funcs that we want to stop
+                self.instant_stop = True  # tell all funcs that we want to stop
 
                 self.is_started.clear()
                 self.stored_msg_ids.clear()
@@ -255,8 +254,7 @@ class Session:
 
                 log.info("Session stopped")
             finally:
-                if restart:
-                    self.instant_stop = False  # reset
+                self.instant_stop = False  # reset
 
     async def restart(self, stop: bool):
         if self.instant_stop:
@@ -273,6 +271,12 @@ class Session:
                 f"[pyroblack] Client [{self.client.name}] called restart while already restarting"
             )
             return  # don't restart 2 times at once
+
+        if not self.is_started.is_set():
+            log.info(
+                f"[pyroblack] Client [{self.client.name}] called restart while not being already started"
+            )
+            return  # don't restart when supposed to be stopped
 
         async with self.restart_lock:
             now = time()
@@ -291,7 +295,7 @@ class Session:
             self.last_reconnect_attempt = time()
             if stop:
                 try:
-                    await self.stop(restart=True)
+                    await self.stop()
                 except Exception as e:
                     log.warning(
                         f"[pyroblack] Client [{self.client.name}] failed stopping; restarting anyways, exc: %s %s",
