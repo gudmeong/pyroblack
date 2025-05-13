@@ -81,6 +81,9 @@ class Chat(Object):
         is_paid_reactions_available (``bool``, *optional*):
             True, if paid reactions enabled in this chat.
 
+        is_auto_translation_enabled (``bool``, *optional*):
+            True, if automatic translation is enabled in chat.
+
         title (``str``, *optional*):
             Title, for supergroups, channels and basic group chats.
 
@@ -220,6 +223,7 @@ class Chat(Object):
         is_antispam: bool = None,
         is_slowmode_enabled: bool = None,
         is_paid_reactions_available: bool = None,
+        is_auto_translation_enabled: bool = None,
         title: str = None,
         username: str = None,
         first_name: str = None,
@@ -269,6 +273,7 @@ class Chat(Object):
         self.is_antispam = is_antispam
         self.is_slowmode_enabled = is_slowmode_enabled
         self.is_paid_reactions_available = is_paid_reactions_available
+        self.is_auto_translation_enabled = is_auto_translation_enabled
         self.title = title
         self.username = username
         self.first_name = first_name
@@ -551,6 +556,7 @@ class Chat(Object):
                 )
                 parsed_chat.is_participants_hidden = full_chat.participants_hidden
                 parsed_chat.is_antispam = full_chat.antispam
+                parsed_chat.is_auto_translation_enabled = getattr(full_chat, "auto_translation", None)
                 parsed_chat.folder_id = getattr(full_chat, "folder_id", None)
                 parsed_chat.is_paid_reactions_available = getattr(
                     full_chat, "paid_reactions_available", None
