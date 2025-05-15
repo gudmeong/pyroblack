@@ -41,6 +41,7 @@ import pyrogram
 from pyrogram import __version__, __license__
 from pyrogram import enums
 from pyrogram import raw
+from pyrogram import types
 from pyrogram import utils
 from pyrogram.crypto import aes
 from pyrogram.errors import CDNFileHashMismatch
@@ -544,15 +545,14 @@ class Client(Methods):
                         print(e.MESSAGE)
                         self.password = None
             else:
-                if self.use_qrcode and isinstance(signed_in, raw.types.auth.LoginToken):
+                if self.use_qrcode and isinstance(signed_in, types.LoginToken):
                     time_out = signed_in.expires - datetime.timestamp(datetime.now())
                     try:
                         await asyncio.wait_for(self._wait_for_update_login_token(), timeout=time_out)
                     except asyncio.TimeoutError:
                         print("QR code expired, Requesting new QR code...")
                     continue
-                else:
-                    break
+                break
 
         if isinstance(signed_in, User):
             return signed_in
