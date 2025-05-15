@@ -80,6 +80,9 @@ class User(Object, Update):
         is_deleted(``bool``, *optional*):
             True, if this user is deleted.
 
+        is_frozen(``bool``, *optional*):
+            True, if this user is frozen.
+
         is_bot (``bool``, *optional*):
             True, if this user is a bot.
 
@@ -167,6 +170,10 @@ class User(Object, Update):
         profile_color (:obj:`~pyrogram.types.ChatColor`, *optional*):
             Chat profile color.
 
+        frozen_icon (``int``, *optional*):
+            Frozen account icon.
+            This field is available only in case *is_frozen* is True.
+
         added_to_attachment_menu (``bool``, *optional*):
             True, if this user added the bot to the attachment menu.
 
@@ -207,6 +214,7 @@ class User(Object, Update):
         is_contact: bool = None,
         is_mutual_contact: bool = None,
         is_deleted: bool = None,
+        is_frozen: bool = None,
         is_bot: bool = None,
         is_verified: bool = None,
         is_restricted: bool = None,
@@ -231,6 +239,7 @@ class User(Object, Update):
         restrictions: List["types.Restriction"] = None,
         reply_color: "types.ChatColor" = None,
         profile_color: "types.ChatColor" = None,
+            frozen_icon: int = None
         added_to_attachment_menu: bool = None,
         active_users_count: int = None,
         inline_need_location: bool = None,
@@ -249,6 +258,7 @@ class User(Object, Update):
         self.is_contact = is_contact
         self.is_mutual_contact = is_mutual_contact
         self.is_deleted = is_deleted
+        self.is_frozen = is_frozen
         self.is_bot = is_bot
         self.is_verified = is_verified
         self.is_restricted = is_restricted
@@ -273,6 +283,7 @@ class User(Object, Update):
         self.restrictions = restrictions
         self.reply_color = reply_color
         self.profile_color = profile_color
+    self.frozen_icon = frozen_icon
         self.added_to_attachment_menu = added_to_attachment_menu
         self.active_users_count = active_users_count
         self.inline_need_location = inline_need_location
@@ -314,12 +325,15 @@ class User(Object, Update):
             user_name = usernames[0].username
             usernames.pop(0)
 
+        frozen_icon = getattr(user, "bot_verification_icon", None)
+
         return User(
             id=user.id,
             is_self=user.is_self,
             is_contact=user.contact,
             is_mutual_contact=user.mutual_contact,
             is_deleted=user.deleted,
+            is_frozen=True if frozen_icon else False,
             is_bot=user.bot,
             is_verified=user.verified,
             is_restricted=user.restricted,
@@ -347,6 +361,7 @@ class User(Object, Update):
             profile_color=types.ChatColor._parse_profile_color(
                 getattr(user, "profile_color", None)
             ),
+            frozen_icon=frozen_icon,
             added_to_attachment_menu=getattr(user, "attach_menu_enabled", None),
             active_users_count=getattr(user, "bot_active_users", None),
             inline_need_location=getattr(user, "bot_inline_geo", None),
