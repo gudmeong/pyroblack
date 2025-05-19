@@ -332,7 +332,11 @@ class SendVideo:
                         video_timestamp=start_timestamp,
                     )
                 else:
-                    media = utils.get_input_media_from_file_id(video, FileType.VIDEO, ttl_seconds=(1 << 31) - 1 if view_once else ttl_seconds)
+                    media = utils.get_input_media_from_file_id(
+                        video,
+                        FileType.VIDEO,
+                        ttl_seconds=(1 << 31) - 1 if view_once else ttl_seconds,
+                    )
                     media.spoiler = has_spoiler
             else:
                 thumb = await self.save_file(thumb)

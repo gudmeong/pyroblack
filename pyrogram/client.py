@@ -459,7 +459,9 @@ class Client(Methods):
                                 self.use_qrcode = True
                                 break
 
-                            confirm = (await ainput(f'Is "{value}" correct? (y/N): ')).lower()
+                            confirm = (
+                                await ainput(f'Is "{value}" correct? (y/N): ')
+                            ).lower()
 
                             if confirm == "y":
                                 break
@@ -484,10 +486,12 @@ class Client(Methods):
                 enums.SentCodeType.CALL: "phone call",
                 enums.SentCodeType.FLASH_CALL: "phone flash call",
                 enums.SentCodeType.FRAGMENT_SMS: "Fragment SMS",
-                enums.SentCodeType.EMAIL_CODE: "email code"
+                enums.SentCodeType.EMAIL_CODE: "email code",
             }
 
-            print(f"The confirmation code has been sent via {sent_code_descriptions[sent_code.type]}")
+            print(
+                f"The confirmation code has been sent via {sent_code_descriptions[sent_code.type]}"
+            )
 
         while True:
             if not self.use_qrcode and not self.phone_code:
@@ -497,7 +501,9 @@ class Client(Methods):
                 if self.use_qrcode:
                     signed_in = await self.sign_in_qrcode()
                 else:
-                    signed_in = await self.sign_in(self.phone_number, sent_code.phone_code_hash, self.phone_code)
+                    signed_in = await self.sign_in(
+                        self.phone_number, sent_code.phone_code_hash, self.phone_code
+                    )
             except BadRequest as e:
                 print(e.MESSAGE)
                 self.phone_code = None
@@ -548,7 +554,9 @@ class Client(Methods):
                 if self.use_qrcode and isinstance(signed_in, types.LoginToken):
                     time_out = signed_in.expires - datetime.timestamp(datetime.now())
                     try:
-                        await asyncio.wait_for(self._wait_for_update_login_token(), timeout=time_out)
+                        await asyncio.wait_for(
+                            self._wait_for_update_login_token(), timeout=time_out
+                        )
                     except asyncio.TimeoutError:
                         print("QR code expired, Requesting new QR code...")
                     continue

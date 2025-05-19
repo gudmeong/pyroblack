@@ -556,7 +556,9 @@ class Chat(Object):
                 )
                 parsed_chat.is_participants_hidden = full_chat.participants_hidden
                 parsed_chat.is_antispam = full_chat.antispam
-                parsed_chat.is_auto_translation_enabled = getattr(full_chat, "auto_translation", None)
+                parsed_chat.is_auto_translation_enabled = getattr(
+                    full_chat, "auto_translation", None
+                )
                 parsed_chat.folder_id = getattr(full_chat, "folder_id", None)
                 parsed_chat.is_paid_reactions_available = getattr(
                     full_chat, "paid_reactions_available", None

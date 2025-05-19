@@ -239,7 +239,7 @@ class User(Object, Update):
         restrictions: List["types.Restriction"] = None,
         reply_color: "types.ChatColor" = None,
         profile_color: "types.ChatColor" = None,
-            frozen_icon: int = None
+        frozen_icon: int = None,
         added_to_attachment_menu: bool = None,
         active_users_count: int = None,
         inline_need_location: bool = None,
@@ -283,7 +283,7 @@ class User(Object, Update):
         self.restrictions = restrictions
         self.reply_color = reply_color
         self.profile_color = profile_color
-    self.frozen_icon = frozen_icon
+        self.frozen_icon = frozen_icon
         self.added_to_attachment_menu = added_to_attachment_menu
         self.active_users_count = active_users_count
         self.inline_need_location = inline_need_location

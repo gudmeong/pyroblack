@@ -28,9 +28,10 @@ from pyrogram.session import Session, Auth
 
 log = logging.getLogger(__name__)
 
+
 class SignInQrcode:
     async def sign_in_qrcode(
-        self: "pyrogram.Client"
+        self: "pyrogram.Client",
     ) -> Union["types.User", "types.LoginToken"]:
         """Authorize a user in Telegram with a QR code.
 
@@ -49,13 +50,12 @@ class SignInQrcode:
         try:
             import qrcode
         except ImportError:
-            raise ImportError("qrcode is missing! "
-                            "Please install it with `pip install qrcode`")
+            raise ImportError(
+                "qrcode is missing! " "Please install it with `pip install qrcode`"
+            )
         r = await self.session.invoke(
             raw.functions.auth.ExportLoginToken(
-                api_id=self.api_id,
-                api_hash=self.api_hash,
-                except_ids=[]
+                api_id=self.api_id, api_hash=self.api_hash, except_ids=[]
             )
         )
         if isinstance(r, raw.types.auth.LoginToken):
@@ -86,26 +86,23 @@ class SignInQrcode:
             await self.storage.dc_id(r.dc_id)
             await self.storage.auth_key(
                 await Auth(
-                    self, await self.storage.dc_id(),
-                    await self.storage.test_mode()
+                    self, await self.storage.dc_id(), await self.storage.test_mode()
                 ).create()
             )
             self.session = Session(
-                self, await self.storage.dc_id(),
-                await self.storage.auth_key(), await self.storage.test_mode()
+                self,
+                await self.storage.dc_id(),
+                await self.storage.auth_key(),
+                await self.storage.test_mode(),
             )
 
             await self.session.start()
             r = await self.session.invoke(
-                raw.functions.auth.ImportLoginToken(
-                    token=r.token
-                )
+                raw.functions.auth.ImportLoginToken(token=r.token)
             )
             if isinstance(r, raw.types.auth.LoginTokenSuccess):
                 await self.storage.user_id(r.authorization.user.id)
                 await self.storage.is_bot(False)
 
                 return types.User._parse(self, r.authorization.user)
-        raise pyrogram.exceptions.RPCError(
-            "Unknown response type from Telegram API"
-        )
+        raise pyrogram.exceptions.RPCError("Unknown response type from Telegram API")
