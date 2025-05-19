@@ -66,7 +66,7 @@ class Session:
     PING_INTERVAL = 5
     STORED_MSG_IDS_MAX_SIZE = 1000 * 2
     RECONNECT_THRESHOLD = 5
-    RE_START_RANGE = range(4)
+    RE_START_RANGE = (1, 2, 3, 4)
 
     TRANSPORT_ERRORS = {
         404: "auth key not found",
