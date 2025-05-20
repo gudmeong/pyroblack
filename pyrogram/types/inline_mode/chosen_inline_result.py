@@ -22,6 +22,7 @@ from struct import pack
 import pyrogram
 from pyrogram import raw
 from pyrogram import types
+from pyrogram import utils
 from ..object import Object
 from ..update import Update
 
@@ -75,22 +76,9 @@ class ChosenInlineResult(Object, Update):
     def _parse(
         client, chosen_inline_result: raw.types.UpdateBotInlineSend, users
     ) -> "ChosenInlineResult":
-        inline_message_id = None
-
-        if isinstance(chosen_inline_result.msg_id, raw.types.InputBotInlineMessageID):
-            inline_message_id = (
-                b64encode(
-                    pack(
-                        "<iqq",
-                        chosen_inline_result.msg_id.dc_id,
-                        chosen_inline_result.msg_id.id,
-                        chosen_inline_result.msg_id.access_hash,
-                    ),
-                    b"-_",
-                )
-                .decode()
-                .rstrip("=")
-            )
+        inline_message_id = utils.pack_inline_message_id(
+            chosen_inline_result.msg_id
+        ) if chosen_inline_result.msg_id else None
 
         return ChosenInlineResult(
             result_id=str(chosen_inline_result.id),
